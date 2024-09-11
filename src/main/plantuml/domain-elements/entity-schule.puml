@@ -1,0 +1,7 @@
+@startuml
+entity Schule {
+ - name : String
+ - homePage : String
+ - direktor : String
+ }
+@enduml

@@ -1,0 +1,77 @@
+# REST Intro
+
+* *Re* presentational
+* *S* tate
+* *T* ransfer
+
+2000, Dr. Roy Fielding - PhD Thesis
+
+Nutzen wir die Kern-Prinzipien der
+darunterliegenden
+Technologien -> *HTTP*, *HTML*
+## HTTP Basics / History
+
+* *H* yper *t* ext
+* *T* ransfer
+* *P* rotocol
+
+HTTP Methoden / Operationen (aka Verben)
+
+* Get
+* Post ... Create
+* Put ... Replace
+* Delete
+* Patch ... Update
+* Head
+* Options
+* Trace
+* Connect
+
+späten '80er / früh 90er, Sir Tim Berners Lee, CERN
+
+* Header 1-6
+* Paragraph
+* Quote
+* Link
+* Basic text format (bold, italic, underline)
+
+## Alternativen zu REST
+
+* RPC (Java RMI)
+* Cobra
+* SOAP
+
+REST arbeitet mit Ressourcen, welche über URI und URL
+identifiziert werden können.
+
+Wie kommt man von dem da oben zu REST ->
+https://devopedia.org/richardson-maturity-model[Richardson Maturity
+Model]
+
+RESTful vs REST (Maturity Level 2 vs 3)
+
+APIGee - API Design Principles
+
+|===
+|Operation | /api/albums (0..n) | /api/albums/ {key} (0..1)
+|GET | y | y
+|POST | y | n/a
+
+|PUT | ? (n) | y *
+|PATCH | ? (n) | y
+|DELETE | ? (n) | y*
+|===
+
+* idempotent
+
+### Complexity bei der Abfrage -> QueryString
+
+QuerySTring: URL?owner=ACH&updateWithin=2w
+
+- Alle Alben, die X gehören /api/albums?owner=X
+- Alle Alben, die in den letzten ?? geändert wurden
+/api/albums?updateWithin=2w
+
+### Nesting von Collections
+
+/api/albums/{key}/photos?startPos=1&endPos=17

@@ -1,0 +1,114 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Person {
+- userName : String
+- firstName : String
+- last_name : String
+- password : String
+- birthday : String
+}
+
+entity School {
+- name : String
+- homePage : String
+- director : String
+}
+
+class Country{
+-- countryID : Integer
+-- countryName : String
+}
+
+class MobileNumber << (V, #FF7700) ValueObject >> {
+- areaCod : Integer
+- mobileNummer : Integer
+}
+
+class Address << (V, #FF7700) ValueObject >> {
+- houseNumber : Integer
+- street : String
+- PLZ : Integer
+- city : String
+- country : String
+}
+
+entity Student {
+   - firstName : String
+   - lastName : String
+   - birthday : String
+   - gender : String
+   - religion : String
+   - password : String
+}
+
+entity Teacher {
+ - firstName : String
+   - lastName : String
+   - birthday : String
+   - gender : String
+   - religion : String
+   - password : String
+}
+
+class Email << (V, #FF7700) ValueObject >>{
+- emailAdress : String
+}
+
+class SchoolClass {
+-- class_id : Integer
+-- floor : Integer
+-- studentList: List
+-- teacherList: List
+}
+
+enum Department {
+- department_id : Integer
+- departmentName : String
+}
+
+enum Religion {
+- Religion_id : Integer
+- Religion_description : String
+}
+
+enum Gender {
+- geschlecht_id: Integer
+}
+
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+Person <|-- Student : "is a"
+Person <|-- Teacher : "is a"
+
+SchoolClass "0..*" -- "0..1" School
+SchoolClass o-- Student
+SchoolClass o-- Teacher
+
+Religion "1 " <-- "n" Person
+Department "1 " *-- "n" SchoolClass
+School "1 " *-- "n" Department
+Email "n " --* "1 " Person
+Address "n" --> "1" Country
+MobileNumber "n " --* "1 " Person
+Address "1 " <-- "n" Teacher
+Address "1 " <-- "n" Student
+Teacher "n " -- "n" Department
+Student "n" --* "1" School
+Student "n" --* "1" SchoolClass
+Gender "1" <-- "n " Person
+Student "n" --* "1 " Address
+Teacher .right. Student
+School .down. Student
+SchoolClass .left. School
+Address .right. Student
+Country .right. Address
+
+
+
+@enduml

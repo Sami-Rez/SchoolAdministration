@@ -1,0 +1,7 @@
+@startuml
+enum Geschlecht {
+MÄNNLICH
+WEIBLICH
+DIVERS
+}
+@enduml

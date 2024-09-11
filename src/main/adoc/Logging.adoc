@@ -1,0 +1,56 @@
+# Logging
+
+## Frameworks im Java Ökosystem
+
+- Apache Log4J2 (bevorzugte Wahl)
+- Logback
+- Simple Logging Facade for Java (SLF4J)
+- Java.util.logging (eher nicht)
+
+## Logger declaration
+
+[source, java]
+----
+@Log4j2
+public class Service{}
+----
+
+[source,java]
+----
+public class Service{
+
+private final Logger logger= LoggerFactory
+.getLogger(this.getClass());
+}
+----
+
+## Log Levels
+|===
+|Level | Content
+
+| NONE (virtual) | Dreht log Meldung für einen
+Logger-Baum komplett ab
+
+| FATAL/SEVERE | Rette was zu retten ist (Ressourcen freigeben), Beende die Applikation, sofern möglich, geregelt
+
+| ERROR | System kann sich nicht von einem solchen Fehler erholen
+| WARN | Protokollierung zur Identifizierung der Fehler/Problemursache
+| INFO | Business Facts (hören Sie in Produktion hier auf)
+| DEBUG | Wo bin ich gerade im Code, minimale Daten
+| TRACE | Variablen-Inhalte
+| All (virtual)| Dreht log Meldung komplett auf
+
+|===
+
+
+## Logger Hierarchy
+
+- ROOT logger -> ROOT.level = NONE
+- package Logger -> z.B.: org.springframework, at.spengergasse.sj23247abcif.service = INFO
+- class logger -> at.spengergasse.sj23247abcif.service.PersonService = TRACE
+- NAMED logger -> DATA-QUALITY-LOGGER
+
+## Log Output
+
+- Files
+-

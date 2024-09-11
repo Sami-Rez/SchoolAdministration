@@ -1,0 +1,7 @@
+@startuml
+class HandyNummer << (V, #FF7700) ValueObject >> {
+- laenderVorwahl : Integer
+- handyVorwahl : String
+- handyNummer : String
+}
+@enduml
